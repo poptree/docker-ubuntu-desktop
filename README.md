@@ -42,7 +42,8 @@ Supported Tags (you can find here [Github Tag](https://github.com/gezp/docker-ub
 > * Ubuntu20.04：`11.0.3`, `11.1.0`, `11.2.2`, `11.3.1`, `11.4.3`, `11.5.2`, `11.6.2`, `11.7.1`
 > * Ubuntu22.04：`11.7.1`, `11.8.0`, `12.0.1`, `12.1.1`, `12.2.2`, `12.3.2`, `12.4.1`, `12.5.1 `
 > * Ubuntu24.04：`12.5.1 `, `12.6.2`
-> * Custom: `Custom:cuda` => In this version you should give a base image.
+> * custom: `custom:cuda` => In this version you should give a base image.
+> * autodl: `autodl:cuda` => In this version you should give a base image and the image will be depolyed on autodl.
 
 ## Build Image
 
@@ -54,6 +55,8 @@ bash docker_build custom-cu11.8 somebaseimage:tag
 bash docker_build custom-cu11.8 somebaseimage:tag true
 # Using aliyun mirror for the user in the mainland
 
+bash docker_build autodl-cu11.8 somebaseimage:tag true
+# Using aliyun mirror for the user in the mainland, and the image will be depolyed on the autodl
 ```
 
 ## Preliminary
