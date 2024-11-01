@@ -42,6 +42,19 @@ Supported Tags (you can find here [Github Tag](https://github.com/gezp/docker-ub
 > * Ubuntu20.04：`11.0.3`, `11.1.0`, `11.2.2`, `11.3.1`, `11.4.3`, `11.5.2`, `11.6.2`, `11.7.1`
 > * Ubuntu22.04：`11.7.1`, `11.8.0`, `12.0.1`, `12.1.1`, `12.2.2`, `12.3.2`, `12.4.1`, `12.5.1 `
 > * Ubuntu24.04：`12.5.1 `, `12.6.2`
+> * Custom: `Custom:cuda` => In this version you should give a base image.
+
+## Build Image
+
+```bash
+bash docker_build 22.04-cu11.8 
+# using nvidia/cuda:11.8-devel-ubuntu22.04 as the base image
+bash docker_build custom-cu11.8 somebaseimage:tag
+# using the somebaseimage:tag as the base image
+bash docker_build custom-cu11.8 somebaseimage:tag true
+# Using aliyun mirror for the user in the mainland
+
+```
 
 ## Preliminary
 

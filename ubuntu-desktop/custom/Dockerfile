@@ -1,8 +1,8 @@
 ARG BASE_IMAGE=ubuntu:24.04
-From $BASE_IMAGE
-
+FROM $BASE_IMAGE
+ARG IS_CHINA=false
 LABEL maintainer "hengli"
-MAINTAINER zhenpeng ge "https://github.com/poptree"
+LABEL page "https://github.com/poptree"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV USER=ubuntu \
@@ -23,6 +23,12 @@ COPY docker_config /docker_config
 
 # Remove default user ubuntu if exist
 RUN userdel ubuntu || true
+RUN if [ "$IS_CHINA" = true ]; then \
+sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list ; \
+apt-get clean \
+    else \
+    echo "DO NOT USE MIRROR" ; \
+fi
 
 ## Install and Configure OpenGL
 RUN apt-get update && \
@@ -58,17 +64,17 @@ RUN bash /docker_config/pre_install.sh &&\
     rm -rf /var/lib/apt/lists/* 
 
 ## Install desktop
-RUN apt-get update && \
-    # add apt repo for firefox
-    add-apt-repository -y ppa:mozillateam/ppa &&\
+RUN apt-get update 
+RUN add-apt-repository -y ppa:mozillateam/ppa &&\
     mkdir -p /etc/apt/preferences.d &&\
     echo "Package: firefox*\n\
 Pin: release o=LP-PPA-mozillateam\n\
-Pin-Priority: 1001" > /etc/apt/preferences.d/mozilla-firefox &&\
+Pin-Priority: 1001" > /etc/apt/preferences.d/mozilla-firefox 
     # install xfce4 and firefox
-    apt-get install -y xfce4 terminator fonts-wqy-zenhei ffmpeg firefox dbus-x11 &&\
+RUN apt-get install -y xfce4 terminator fonts-wqy-zenhei ffmpeg firefox 
+# dbus-x11
     # remove and disable screensaver
-    apt-get remove -y xfce4-screensaver --purge &&\
+RUN apt-get remove -y xfce4-screensaver --purge &&\
     # set firefox as default web browser
     update-alternatives --set x-www-browser /usr/bin/firefox &&\
     rm -rf /var/lib/apt/lists/*
@@ -81,6 +87,12 @@ RUN apt-get update && apt-get install -y pulseaudio && mkdir -p /var/run/dbus &&
 RUN bash docker_config/config_ssh.sh
 
 ## Install Jupyterlab
+RUN if [ "$IS_CHINA" = true ] ; then \
+python -m pip install --upgrade -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple pip  ; \
+pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple ; \
+else \
+echo "DO NOT USE PIP MIRROR"; \
+fi
 RUN bash docker_config/config_jupyterlab.sh
 
 ## Install remote desktop and other apps
