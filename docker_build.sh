@@ -38,9 +38,9 @@ if [[ $? != 0 ]]; then
 fi
 
 # build ubuntu-desktop image
-if [ [(${UBUNTU_VERSION} == "custom")] ]; then
+if [[(${UBUNTU_VERSION} == "custom")]]; then
     DOCKER_TAG="custom"
-elif [ [(${UBUNTU_VERSION} == "autodl")] ]; then
+elif [[(${UBUNTU_VERSION} == "autodl")]]; then
     DOCKER_TAG="autodl"
 elif [[("${CUDA_VERSION}" == "")]];then
     DOCKER_TAG=${UBUNTU_VERSION}
