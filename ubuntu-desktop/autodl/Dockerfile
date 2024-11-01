@@ -99,6 +99,6 @@ RUN bash /docker_config/config_jupyterlab.sh
 RUN bash /docker_config/post_install.sh &&\
     rm -rf /var/lib/apt/lists/*
 
-# EXPOSE 22 4000
+EXPOSE 22 4000
 
-ENTRYPOINT ["/docker_config/entrypoint.sh"]
+ENTRYPOINT ["/docker_config/entrypoint_autodl.sh"]

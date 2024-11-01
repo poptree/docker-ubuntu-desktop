@@ -8,7 +8,7 @@ CUDA_VERSION=`echo $1 | awk -F '-cu' '{print $2}'`
 echo "ubuntu version:${UBUNTU_VERSION},cuda version:${CUDA_VERSION}"
 
 # check ubuntu version
-if [[ ${UBUNTU_VERSION} == "custom" ]]; then
+if [[ (${UBUNTU_VERSION} == "custom") || (${UBUNTU_VERSION} == "autodl" ) ]]; then
     echo "Using custom image"
 elif [[(${UBUNTU_VERSION} != "18.04") && (${UBUNTU_VERSION} != "20.04") && (${UBUNTU_VERSION} != "22.04") && (${UBUNTU_VERSION} != "24.04")]];then
     echo "Invalid ubuntu version:${UBUNTU_VERSION}"
@@ -38,8 +38,10 @@ if [[ $? != 0 ]]; then
 fi
 
 # build ubuntu-desktop image
-if [ $# -ge 2 ]; then
+if [ [(${UBUNTU_VERSION} == "custom")] ]; then
     DOCKER_TAG="custom"
+elif [ [(${UBUNTU_VERSION} == "autodl")] ]; then
+    DOCKER_TAG="autodl"
 elif [[("${CUDA_VERSION}" == "")]];then
     DOCKER_TAG=${UBUNTU_VERSION}
 else
