@@ -70,7 +70,7 @@ bash docker_build autodl-cu11.8 somebaseimage:tag true
 
 1. build the image
 ```bash
-bash docker_build autodl-cu11.8 somebaseimage:tag true
+bash docker_build autodl-cu11.8 somebaseimage:tag 
 # Using aliyun mirror for the user in the mainland, and the image will be depolyed on the autodl
 docker tag theimagewithdesktop remotehub/repo:tag
 docker push remotehub/repo:tag
