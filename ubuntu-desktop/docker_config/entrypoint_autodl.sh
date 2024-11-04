@@ -8,7 +8,7 @@ if [ ! -f "/docker_config/init_flag" ]; then
     env | grep -Ev "CMD=|PWD=|SHLVL=|_=|DEBIAN_FRONTEND=|USER=|HOME=|UID=|GID=|PASSWORD=" > /etc/environment
     # create user
     groupadd -g $GID $USER
-    useradd --create-home --no-log-init -u $UID -g $GID $USER
+    useradd --create-home --no-log-init -u 1000 -g $GID $USER
     usermod -aG sudo $USER
     usermod -aG ssl-cert $USER
     echo "root:$PASSWORD" | chpasswd

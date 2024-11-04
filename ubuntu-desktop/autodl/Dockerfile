@@ -101,4 +101,4 @@ RUN bash /docker_config/post_install.sh &&\
 
 EXPOSE 22 4000
 
-ENTRYPOINT ["/docker_config/entrypoint_autodl.sh"]
+# ENTRYPOINT ["/docker_config/entrypoint_autodl.sh"]
