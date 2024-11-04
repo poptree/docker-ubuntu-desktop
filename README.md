@@ -66,6 +66,23 @@ bash docker_build autodl-cu11.8 somebaseimage:tag true
 
 > Tip: the newer cuda version isn't supported if you use older nvidia driver.
 
+## Quickly Start on Autodl
+
+1. build the image
+```bash
+bash docker_build autodl-cu11.8 somebaseimage:tag true
+# Using aliyun mirror for the user in the mainland, and the image will be depolyed on the autodl
+docker tag theimagewithdesktop remotehub/repo:tag
+docker push remotehub/repo:tag
+```
+2. Adding the `remotehub/repo:tag` on the autodl private cloud.
+3. Using `remotehub/repo:tag` to start a new container.
+4. ssh connects into contianer.
+5. Run `bash /docker_config/run_on_autdl.sh`, you can also modify the env in the bash file
+6. **Open the website posted on the autodl with https**
+7. Enjoy yourself.
+
+
 ## Quickly Start
 
 pull docker image
