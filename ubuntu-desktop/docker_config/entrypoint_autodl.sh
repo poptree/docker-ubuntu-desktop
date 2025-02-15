@@ -1,15 +1,14 @@
 
-export UID=1000
+export UID=0
 export GID=1000
-export USER=ubuntu
-export PASSWORD=gyhxHkust.1230300192Ubuntuubuntu
-export REMOTE_DESKTOP=kasmvnc
+export USER=root
+# export PASSWORD=gyhxHkust.1230300192Ubuntuubuntu
+export REMOTE_DESKTOP=kasmvnc # nomachine
 export NVIDIA_VISIBLE_DEVICES=all
 export NVIDIA_DRIVER_CAPABILITIES=all
 export HTTPS_CERT=/etc/ssl/certs/ssl-cert-snakeoil.pem
 export HTTPS_CERT_KEY=/etc/ssl/private/ssl-cert-snakeoil.key
 export VGL_DISPLAY=egl
-export REMOTE_DESKTOP=kasmvnc
 export VNC_THREADS=2
 
 #!/bin/sh
@@ -21,12 +20,12 @@ if [ ! -f "/docker_config/init_flag" ]; then
     export PATH=/usr/NX/scripts/vgl:$PATH
     env | grep -Ev "CMD=|PWD=|SHLVL=|_=|DEBIAN_FRONTEND=|USER=|HOME=|UID=|GID=|PASSWORD=" > /etc/environment
     # create user
-    groupadd -g $GID $USER
-    useradd --create-home --no-log-init -u $UID -g $GID $USER
-    usermod -aG sudo $USER
+    #groupadd -g $GID $USER
+    #useradd --create-home --no-log-init -u $UID -g $GID $USER
+    #usermod -aG sudo $USER
     usermod -aG ssl-cert $USER
-    echo "root:$PASSWORD" | chpasswd
-    echo "$USER:$PASSWORD" | chpasswd
+    #echo "root:$PASSWORD" | chpasswd
+    #echo "$USER:$PASSWORD" | chpasswd
     chsh -s /bin/bash $USER
     # extra env init for developer
     if [ -f "/docker_config/env_init.sh" ]; then
