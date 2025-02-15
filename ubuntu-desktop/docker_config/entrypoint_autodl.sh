@@ -4,6 +4,13 @@ export GID=1000
 export USER=ubuntu
 export PASSWORD=gyhxHkust.1230300192Ubuntuubuntu
 export REMOTE_DESKTOP=kasmvnc
+export NVIDIA_VISIBLE_DEVICES=all
+export NVIDIA_DRIVER_CAPABILITIES=all
+export HTTPS_CERT=/etc/ssl/certs/ssl-cert-snakeoil.pem
+export HTTPS_CERT_KEY=/etc/ssl/private/ssl-cert-snakeoil.key
+export VGL_DISPLAY=egl
+export REMOTE_DESKTOP=kasmvnc
+export VNC_THREADS=2
 
 #!/bin/sh
 ## initialize environment
