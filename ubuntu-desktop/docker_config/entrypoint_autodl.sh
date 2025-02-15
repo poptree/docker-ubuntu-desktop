@@ -1,3 +1,10 @@
+
+export UID=1000
+export GID=1000
+export USER=ubuntu
+export PASSWORD=gyhxHkust.1230300192Ubuntuubuntu
+export REMOTE_DESKTOP=kasmvnc
+
 #!/bin/sh
 ## initialize environment
 if [ ! -f "/docker_config/init_flag" ]; then
@@ -8,7 +15,7 @@ if [ ! -f "/docker_config/init_flag" ]; then
     env | grep -Ev "CMD=|PWD=|SHLVL=|_=|DEBIAN_FRONTEND=|USER=|HOME=|UID=|GID=|PASSWORD=" > /etc/environment
     # create user
     groupadd -g $GID $USER
-    useradd --create-home --no-log-init -u 1000 -g $GID $USER
+    useradd --create-home --no-log-init -u $UID -g $GID $USER
     usermod -aG sudo $USER
     usermod -aG ssl-cert $USER
     echo "root:$PASSWORD" | chpasswd
@@ -30,7 +37,7 @@ if [ -f "/docker_config/custom_startup.sh" ]; then
 	bash /docker_config/custom_startup.sh
 fi
 # start sshd
-# /usr/sbin/sshd
+/usr/sbin/sshd
 # start dbus
 /etc/init.d/dbus start
 # start coder server

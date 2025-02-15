@@ -100,5 +100,6 @@ RUN bash /docker_config/post_install.sh &&\
     rm -rf /var/lib/apt/lists/*
 
 EXPOSE 22 4000
-
+CMD ["/usr/sbin/sshd", "-D"]
+# ENTRYPOINT ["/docker_config/entrypoint_autodl.sh"]
 # ENTRYPOINT ["/docker_config/entrypoint_autodl.sh"]
