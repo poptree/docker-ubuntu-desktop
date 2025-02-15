@@ -18,8 +18,7 @@ ENV VGL_DISPLAY=egl
 ENV REMOTE_DESKTOP=kasmvnc
 ENV VNC_THREADS=2
 
-## Copy config
-COPY docker_config /docker_config
+
 
 # Remove default user ubuntu if exist
 RUN userdel ubuntu || true
@@ -58,7 +57,8 @@ RUN apt-get update && \
         \"api_version\" : \"${VULKAN_API_VERSION}\"\n\
 }\n\
 }" > /etc/vulkan/icd.d/nvidia_icd.json
-
+## Copy config
+COPY docker_config /docker_config
 ## Install some common tools 
 RUN bash /docker_config/pre_install.sh &&\
     rm -rf /var/lib/apt/lists/* 
