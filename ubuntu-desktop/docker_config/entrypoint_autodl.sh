@@ -49,10 +49,12 @@ fi
 # start coder server
 su $USER -c "code-server --cert $HTTPS_CERT --cert-key $HTTPS_CERT_KEY --bind-addr=0.0.0.0:5000 &"
 # start remote desktop
+echo "start nomachine"
+bash /docker_config/start_nomachine.sh
 if [ "${REMOTE_DESKTOP}" = "nomachine" ]; then
     echo "start nomachine"
     bash /docker_config/start_nomachine.sh
-elif [ "${REMOTE_DESKTOP}" = "kasmvnc" ]; then
+if [ "${REMOTE_DESKTOP}" = "kasmvnc" ]; then
     echo "start kasmvnc"
     bash /docker_config/start_kasmvnc.sh
 elif [ "${REMOTE_DESKTOP}" = "novnc" ]; then
