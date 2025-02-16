@@ -2,7 +2,7 @@
 export UID=0
 export GID=1000
 export USER=root
-# export PASSWORD=gyhxHkust.1230300192Ubuntuubuntu
+export PASSWORD=gyhxHkust.1230300192Ubuntuubuntu
 export REMOTE_DESKTOP=kasmvnc # nomachine
 export NVIDIA_VISIBLE_DEVICES=all
 export NVIDIA_DRIVER_CAPABILITIES=all
